@@ -49,7 +49,9 @@ public class BufferedReaderLinesCollector {
     val dateTimeLimit = now().plus(durationLimit);
 
     while (this.needsMore(collectedStrings) && now().isBefore(dateTimeLimit)) {
-      val tweetJson = bufferedReader.readLine();
+      // TODO there's a potential bug here as 'readLine' 
+      // is a blocking operation, so it has to be fixed
+      val tweetJson = bufferedReader.readLine(); 
 
       if (isNullOrEmpty(tweetJson)) {
         break;
